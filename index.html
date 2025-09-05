@@ -1,5 +1,100 @@
-// src/App.js
-export default function App() { 
+# Create project folder
+mkdir palm-tree-panic-button
+cd palm-tree-panic-button
+
+# Create config files
+cat > package.json <<'EOF'
+{
+  "name": "palm-tree-panic-button",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.3",
+    "gh-pages": "^6.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "https://YOUR_USERNAME.github.io/palm-tree-panic-button"
+}
+EOF
+
+cat > tailwind.config.js <<'EOF'
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+EOF
+
+cat > postcss.config.js <<'EOF'
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+EOF
+
+# Public files
+mkdir public
+cat > public/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Palm Tree Panic Button</title>
+  </head>
+  <body class="antialiased">
+    <div id="root"></div>
+  </body>
+</html>
+EOF
+
+# Source files
+mkdir src
+cat > src/index.js <<'EOF'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+EOF
+
+cat > src/index.css <<'EOF'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: system-ui, sans-serif;
+}
+EOF
+
+cat > src/App.js <<'EOF'
+export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-500 to-white flex flex-col items-center p-6 space-y-8">
       <h1 className="text-4xl font-extrabold text-center text-orange-700 mt-6">
@@ -7,37 +102,33 @@ export default function App() {
       </h1>
 
       <div className="w-full max-w-xs flex flex-col space-y-4 mt-8">
-        <a
-          href="https://example.com/contacts"
-          className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition"
-        >
+        <a href="https://example.com/contacts" className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition">
           Key Contacts
         </a>
-        <a
-          href="https://example.com/request"
-          className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition"
-        >
+        <a href="https://example.com/request" className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition">
           Request Form
         </a>
-        <a
-          href="https://example.com/map"
-          className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition"
-        >
+        <a href="https://example.com/map" className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition">
           Workshop Map
         </a>
-        <a
-          href="https://example.com/unit-list"
-          className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition"
-        >
+        <a href="https://example.com/unit-list" className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition">
           Unit List
         </a>
-        <a
-          href="https://example.com/amenities"
-          className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition"
-        >
+        <a href="https://example.com/amenities" className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md text-center hover:bg-orange-600 transition">
           Amenities
         </a>
       </div>
     </div>
   );
 }
+EOF
+
+echo "✅ Project files created."
+echo "Next steps:"
+echo "1. cd palm-tree-panic-button"
+echo "2. npm install"
+echo "3. npm start  (to test locally)"
+echo "4. Replace YOUR_USERNAME in package.json homepage field"
+echo "5. git init && git remote add origin https://github.com/YOUR_USERNAME/palm-tree-panic-button.git"
+echo "6. git add . && git commit -m 'initial commit' && git push -u origin main"
+echo "7. npm run deploy (to publish on GitHub Pages)"
