@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <!-- Enable standalone mode on Android and iOS -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Palm Tree Panic Button" />
+  <meta name="theme-color" content="#f97316" />
+
+  <!-- PWA manifest and icons -->
+  <!-- Ensure you create 'manifest.json' and your icons (icon-192.png, icon-512.png) -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
   <title>Palm Tree Panic Button</title>
+
   <style>
-    /* Reset margins and set full-height layout */
+    /* Reset margin and set full-height layout */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
     }
     /* Orange-to-white gradient background */
     body {
@@ -24,7 +38,7 @@
     /* Heading styles */
     h1 {
       color: #c2410c;
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       font-weight: 700;
       text-align: center;
       margin-top: 3rem;
@@ -34,42 +48,43 @@
     /* Container to stack buttons */
     .button-container {
       width: 100%;
-      max-width: 320px;
+      max-width: 330px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       margin-bottom: 3rem;
     }
-    /* Button base style */
+    /* Base button styles */
     .btn {
       display: block;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.5rem;
       background-color: #f97316;
-      color: white;
+      color: #ffffff;
       text-align: center;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 600;
       border-radius: 0.75rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease-in-out;
     }
-    /* Hover effect */
     .btn:hover {
       background-color: #ea580c;
     }
   </style>
 </head>
 <body>
-  <h1>PALM TREE<br>PANIC BUTTON</h1>
+  <h1>PALM TREE<br />PANIC BUTTON</h1>
 
   <div class="button-container">
-    <!-- Replace the example URLs below with your actual links -->
-    <a href="https://www.milkandgin.co.uk/contacts" class="btn">Key Contacts</a>
-    <a href="https://studiounit.fillout.com/request-form" class="btn">Request Form</a>
-    <a href="https://www.milkandgin.co.uk/map" class="btn">Workshop Map</a>
+    <!-- Replace each href value with your actual links -->
+    <a href="https://example.com/key-contacts" class="btn">Key Contacts</a>
+    <a href="https://example.com/request-form" class="btn">Request Form</a>
+    <a href="https://example.com/workshop-map" class="btn">Workshop Map</a>
     <a href="https://example.com/unit-list" class="btn">Unit List</a>
-    <a href="https://www.milkandgin.co.uk/amenities" class="btn">Amenities</a>
+    <a href="https://example.com/amenities" class="btn">Amenities</a>
+    <a href="https://example.com/screwfix" class="btn">Screwfix (Nearest)</a>
+    <a href="https://example.com/travis-perkins" class="btn">Travis Perkins (Nearest)</a>
   </div>
 </body>
 </html>
