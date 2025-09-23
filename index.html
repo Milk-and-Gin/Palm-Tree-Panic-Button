@@ -2,17 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Palmtree Panic Button">
+  <meta name="theme-color" content="#f97316">
   <title>Palmtree Panic Button</title>
   <style>
-    /* Reset and baseline styling */
+    /* Reset margin and set full-height layout */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
     }
-    /* Background gradient */
+    /* Orange-to-white gradient background */
     body {
       background: linear-gradient(to bottom, #f97316 0%, #fff7ed 100%);
       display: flex;
@@ -31,7 +36,7 @@
       margin-bottom: 2rem;
       line-height: 1.2;
     }
-    /* Buttons container */
+    /* Container to stack buttons */
     .button-container {
       width: 100%;
       max-width: 330px;
@@ -40,7 +45,7 @@
       gap: 1rem;
       margin-bottom: 3rem;
     }
-    /* Button styling */
+    /* Base button styles */
     .btn {
       display: block;
       padding: 0.8rem 1.5rem;
@@ -53,90 +58,19 @@
       border-radius: 0.75rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: background-color 0.2s ease-in-out;
-      cursor: pointer;
     }
     .btn:hover {
       background-color: #ea580c;
     }
-    /* Section styling */
-    .section {
-      display: none;
-      width: 100%;
-      max-width: 900px;
-      padding: 1rem 0.5rem;
-      text-align: center;
-    }
-    .section iframe, .section embed {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
   </style>
 </head>
 <body>
-  <!-- Main menu -->
-  <h1 id="title">PALM TREE<br/>PANIC BUTTON</h1>
-  <div id="main-menu" class="button-container">
-    <button class="btn" onclick="showSection('contacts')">Key Contacts</button>
-    <button class="btn" onclick="showSection('request')">Request Form</button>
-    <button class="btn" onclick="showSection('map')">Workshop Map</button>
-    <button class="btn" onclick="showSection('amenities')">Amenities</button>
+  <h1>PALM TREE<br>PANIC BUTTON</h1>
+  <div class="button-container">
+    <a href="https://www.milkandgin.co.uk/contacts" class="btn" target="_blank" rel="noopener">Key Contacts</a>
+    <a href="https://studiounit.fillout.com/request-form" class="btn" target="_blank" rel="noopener">Request Form</a>
+    <a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" class="btn" target="_blank" rel="noopener">Workshop Map</a>
+    <a href="https://www.milkandgin.co.uk/amenities" class="btn" target="_blank" rel="noopener">Amenities</a>
   </div>
-
-  <!-- Embedded key contacts -->
-  <div id="contacts" class="section">
-    <h2>Key Contacts</h2>
-    <!-- The milkandgin contacts page is embedded directly -->
-    <iframe src="https://www.milkandgin.co.uk/contacts" title="Milk and Gin Contacts"></iframe>
-    <p style="font-size:0.85rem;">
-      Note: The embedded page lists team members such as Studio Production Manager
-      Duncan Newland and Assistant Studio Manager Sofia Hummelin along with a phone number [oai_citation:0‡milkandgin.co.uk](https://www.milkandgin.co.uk/contacts#:~:text=).
-    </p>
-    <button class="btn" onclick="showMainMenu()">Main Menu</button>
-  </div>
-
-  <!-- Embedded request form -->
-  <div id="request" class="section">
-    <h2>Studio Unit Request Form</h2>
-    <iframe src="https://studiounit.fillout.com/request-form" title="Studio Unit Request Form"></iframe>
-    <button class="btn" onclick="showMainMenu()">Main Menu</button>
-  </div>
-
-  <!-- Embedded workshop map PDF -->
-  <div id="map" class="section">
-    <h2>Workshop Map</h2>
-    <embed src="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf#zoom=fitH" type="application/pdf">
-    <button class="btn" onclick="showMainMenu()">Main Menu</button>
-  </div>
-
-  <!-- Embedded amenities list -->
-  <div id="amenities" class="section">
-    <h2>Amenities</h2>
-    <iframe src="https://www.milkandgin.co.uk/amenities" title="Amenities near Milk and Gin Studios"></iframe>
-    <button class="btn" onclick="showMainMenu()">Main Menu</button>
-  </div>
-
-  <script>
-    // Display the selected section and hide others
-    function showSection(id) {
-      document.getElementById('main-menu').style.display = 'none';
-      document.getElementById('title').style.display = 'none';
-      document.querySelectorAll('.section').forEach(function(sec) {
-        sec.style.display = 'none';
-      });
-      const target = document.getElementById(id);
-      if (target) {
-        target.style.display = 'block';
-      }
-    }
-    // Return to main menu
-    function showMainMenu() {
-      document.getElementById('main-menu').style.display = 'flex';
-      document.getElementById('title').style.display = 'block';
-      document.querySelectorAll('.section').forEach(function(sec) {
-        sec.style.display = 'none';
-      });
-    }
-  </script>
 </body>
 </html>
