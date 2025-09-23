@@ -32,11 +32,13 @@
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
-    /* Button container, centered horizontally */
+    /* Button container: auto margins center it */
     .button-container {
       max-width: 330px;
       width: 100%;
-      margin: 0 auto 2rem; /* center horizontally and add bottom margin */
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -61,7 +63,7 @@
     .btn:hover {
       background-color: #ea580c;
     }
-    /* Section styles */
+    /* Hidden sections until selected */
     .section {
       display: none;
       width: 100%;
@@ -84,7 +86,7 @@
     .section a:hover {
       color: #b91c1c;
     }
-    /* Responsive adjustments for small screens */
+    /* Smaller text on narrow screens */
     @media (max-width: 480px) {
       h1 {
         font-size: 1.8rem;
@@ -124,7 +126,6 @@
   </div>
 
   <script>
-    // Show a section and hide the main menu
     function showSection(id) {
       document.getElementById('main-menu').style.display = 'none';
       document.getElementById('title').style.display = 'none';
@@ -136,7 +137,6 @@
         section.style.display = 'block';
       }
     }
-    // Show the main menu and hide sections
     function showMainMenu() {
       document.getElementById('main-menu').style.display = 'flex';
       document.getElementById('title').style.display = 'block';
