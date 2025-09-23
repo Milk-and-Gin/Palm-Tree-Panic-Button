@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Palmtree Panic Button">
-  <meta name="theme-color" content="#f97316">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Palmtree Panic Button" />
+  <meta name="theme-color" content="#f97316" />
   <title>Palmtree Panic Button</title>
   <style>
-    /* Reset margin and set full-height layout */
+    /* Global resets */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
     }
-    /* Orange-to-white gradient background */
+    /* Background gradient */
     body {
       background: linear-gradient(to bottom, #f97316 0%, #fff7ed 100%);
       display: flex;
@@ -26,7 +26,7 @@
       justify-content: flex-start;
       min-height: 100vh;
     }
-    /* Heading styles */
+    /* Page header */
     h1 {
       color: #c2410c;
       font-size: 2.4rem;
@@ -36,7 +36,7 @@
       margin-bottom: 2rem;
       line-height: 1.2;
     }
-    /* Container to stack buttons */
+    /* Container for main-menu buttons */
     .button-container {
       width: 100%;
       max-width: 330px;
@@ -45,7 +45,7 @@
       gap: 1rem;
       margin-bottom: 3rem;
     }
-    /* Base button styles */
+    /* Button appearance */
     .btn {
       display: block;
       padding: 0.8rem 1.5rem;
@@ -58,19 +58,94 @@
       border-radius: 0.75rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: background-color 0.2s ease-in-out;
+      cursor: pointer;
     }
     .btn:hover {
       background-color: #ea580c;
     }
+    /* Hide all content sections until needed */
+    .section {
+      display: none;
+      width: 100%;
+      max-width: 900px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+    }
+    /* Embedded content dimensions */
+    .section iframe,
+    .section embed {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
   </style>
 </head>
 <body>
-  <h1>PALM TREE<br>PANIC BUTTON</h1>
-  <div class="button-container">
-    <a href="https://www.milkandgin.co.uk/contacts" class="btn" target="_blank" rel="noopener">Key Contacts</a>
-    <a href="https://studiounit.fillout.com/request-form" class="btn" target="_blank" rel="noopener">Request Form</a>
-    <a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" class="btn" target="_blank" rel="noopener">Workshop Map</a>
-    <a href="https://www.milkandgin.co.uk/amenities" class="btn" target="_blank" rel="noopener">Amenities</a>
+  <!-- Main menu -->
+  <h1 id="title">PALM TREE<br/>PANIC BUTTON</h1>
+  <div id="main-menu" class="button-container">
+    <button class="btn" onclick="showSection('contacts')">Key Contacts</button>
+    <button class="btn" onclick="showSection('request')">Request Form</button>
+    <button class="btn" onclick="showSection('map')">Workshop Map</button>
+    <button class="btn" onclick="showSection('amenities')">Amenities</button>
   </div>
+
+  <!-- Contacts section: embedded Milk & Gin “Our Team” page with return button -->
+  <div id="contacts" class="section">
+    <h2>Key Contacts</h2>
+    <iframe src="https://www.milkandgin.co.uk/contacts" title="Milk and Gin Contacts"></iframe>
+    <p style="font-size: 0.85rem;">
+      This embedded page lists staff members such as Studio Production Manager Duncan Newland and Assistant Studio Manager Sofia Hummelin [oai_citation:0‡milkandgin.co.uk](https://www.milkandgin.co.uk/contacts#:~:text=).
+    </p>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <!-- Request Form section: embedded Fillout form with return button -->
+  <div id="request" class="section">
+    <h2>Studio Unit Request Form</h2>
+    <iframe src="https://studiounit.fillout.com/request-form" title="Studio Unit Request Form"></iframe>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <!-- Workshop Map section: embedded PDF viewer with return button -->
+  <div id="map" class="section">
+    <h2>Workshop Map</h2>
+    <embed src="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf#zoom=fitH" type="application/pdf">
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <!-- Amenities section: embedded Milk & Gin amenities list with return button -->
+  <div id="amenities" class="section">
+    <h2>Amenities</h2>
+    <iframe src="https://www.milkandgin.co.uk/amenities" title="Amenities near Milk and Gin Studios"></iframe>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <script>
+    /* Show selected section, hide others and the main menu */
+    function showSection(id) {
+      // hide the menu and title
+      document.getElementById('main-menu').style.display = 'none';
+      document.getElementById('title').style.display = 'none';
+      // hide all sections
+      document.querySelectorAll('.section').forEach(function(sec) {
+        sec.style.display = 'none';
+      });
+      // show the requested section
+      var target = document.getElementById(id);
+      if (target) {
+        target.style.display = 'block';
+      }
+    }
+
+    /* Return to main menu */
+    function showMainMenu() {
+      document.getElementById('main-menu').style.display = 'flex';
+      document.getElementById('title').style.display = 'block';
+      document.querySelectorAll('.section').forEach(function(sec) {
+        sec.style.display = 'none';
+      });
+    }
+  </script>
 </body>
 </html>
