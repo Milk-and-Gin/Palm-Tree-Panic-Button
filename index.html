@@ -1,32 +1,18 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-
-  <!-- Enable standalone mode on Android and iOS -->
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Palmtree Panic Button" />
-  <meta name="theme-color" content="#f97316" />
-
-  <!-- PWA manifest and icons -->
-  <!-- Ensure you create 'manifest.json' and your icons (icon-192.png, icon-512.png) -->
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon-192.png" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Palmtree Panic Button</title>
-
   <style>
-    /* Reset margin and set full-height layout */
+    /* Reset margin and set full‑height layout */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
     }
-    /* Orange-to-white gradient background */
+    /* Orange‑to‑white gradient background */
     body {
       background: linear-gradient(to bottom, #f97316 0%, #fff7ed 100%);
       display: flex;
@@ -45,7 +31,7 @@
       margin-bottom: 2rem;
       line-height: 1.2;
     }
-    /* Container to stack buttons */
+    /* Container for buttons */
     .button-container {
       width: 100%;
       max-width: 330px;
@@ -54,7 +40,7 @@
       gap: 1rem;
       margin-bottom: 3rem;
     }
-    /* Base button styles */
+    /* Button styling */
     .btn {
       display: block;
       padding: 0.8rem 1.5rem;
@@ -67,22 +53,80 @@
       border-radius: 0.75rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: background-color 0.2s ease-in-out;
+      cursor: pointer;
     }
     .btn:hover {
       background-color: #ea580c;
     }
+    /* Hide sections by default */
+    .section {
+      display: none;
+      max-width: 600px;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>PALM TREE<br />PANIC BUTTON</h1>
-
-  <div class="button-container">
-  
-    <a href="https://www.milkandgin.co.uk/contacts" class="btn">Key Contacts</a>
-    <a href="https://studiounit.fillout.com/request-form" class="btn">Request Form</a>
-    <a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" class="btn">Workshop Map</a>
-    
-    <a href="https://www.milkandgin.co.uk/amenities" class="btn">Amenities</a> 
+  <!-- Main menu -->
+  <h1 id="title">PALM TREE<br>PANIC BUTTON</h1>
+  <div id="main-menu" class="button-container">
+    <button class="btn" onclick="showSection('contacts')">Key Contacts</button>
+    <button class="btn" onclick="showSection('request')">Request Form</button>
+    <button class="btn" onclick="showSection('map')">Workshop Map</button>
+    <button class="btn" onclick="showSection('amenities')">Amenities</button>
   </div>
+
+  <!-- Contacts section -->
+  <div id="contacts" class="section">
+    <h2>Key Contacts</h2>
+    <p>You can reach the Palmtree production team through the Milk&nbsp;and&nbsp;Gin site.</p>
+    <p><a href="https://www.milkandgin.co.uk/contacts" target="_blank" rel="noopener noreferrer">Open Milk and Gin Contacts in a new tab</a></p>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <!-- Request form section -->
+  <div id="request" class="section">
+    <h2>Studio Unit Request Form</h2>
+    <p>To submit a request, please use our online form. It will open in a new tab so this page stays available.</p>
+    <p><a href="https://studiounit.fillout.com/request-form" target="_blank" rel="noopener noreferrer">Open request form</a></p>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <!-- Workshop map section -->
+  <div id="map" class="section">
+    <h2>Workshop Map</h2>
+    <p>The map is delivered as a PDF. Click below to download or view it:</p>
+    <p><a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" target="_blank" rel="noopener noreferrer">Open workshop map</a></p>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <!-- Amenities section -->
+  <div id="amenities" class="section">
+    <h2>Amenities</h2>
+    <p>See details about the amenities at our facilities on the Milk and Gin site.</p>
+    <p><a href="https://www.milkandgin.co.uk/amenities" target="_blank" rel="noopener noreferrer">Open amenities information</a></p>
+    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+  </div>
+
+  <script>
+    // Hide all sections and show the main menu
+    function showMainMenu() {
+      document.getElementById('main-menu').style.display = 'flex';
+      document.getElementById('title').style.display = 'block';
+      document.querySelectorAll('.section').forEach(function(sec) {
+        sec.style.display = 'none';
+      });
+    }
+    // Show a particular section and hide the main menu
+    function showSection(id) {
+      document.getElementById('main-menu').style.display = 'none';
+      document.getElementById('title').style.display = 'none';
+      document.querySelectorAll('.section').forEach(function(sec) {
+        sec.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
 </body>
 </html>
