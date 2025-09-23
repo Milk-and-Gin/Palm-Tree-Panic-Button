@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Palmtree Panic Button" />
-  <meta name="theme-color" content="#f97316" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f97316">
   <title>Palmtree Panic Button</title>
   <style>
-    /* Base resets */
+    /* Basic resets */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
     }
+    /* Gradient background */
     body {
       background: linear-gradient(to bottom, #f97316 0%, #fff7ed 100%);
       display: flex;
@@ -25,6 +22,7 @@
       justify-content: flex-start;
       min-height: 100vh;
     }
+    /* Header */
     h1 {
       color: #c2410c;
       font-size: 2.4rem;
@@ -34,6 +32,7 @@
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
+    /* Button container */
     .button-container {
       width: 90%;
       max-width: 330px;
@@ -42,25 +41,27 @@
       gap: 1rem;
       margin-bottom: 2rem;
     }
+    /* Uniform button styles */
     .btn {
       display: block;
       width: 100%;
       padding: 0.8rem 1rem;
       background-color: #f97316;
-      color: #ffffff;
+      color: #fff;
       text-align: center;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 600;
       border-radius: 0.75rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.2s ease-in-out;
       border: none;
       cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
     }
     .btn:hover {
       background-color: #ea580c;
     }
+    /* Section styles */
     .section {
       display: none;
       width: 100%;
@@ -68,7 +69,6 @@
       padding: 0.5rem;
       text-align: center;
     }
-    /* Use viewport height for embedded content on mobile for better use of space */
     .section iframe,
     .section embed {
       width: 100%;
@@ -83,7 +83,7 @@
     .section a:hover {
       color: #b91c1c;
     }
-    /* Responsive typography for smaller screens */
+    /* Responsive adjustments */
     @media (max-width: 480px) {
       h1 {
         font-size: 1.8rem;
@@ -98,31 +98,31 @@
   </style>
 </head>
 <body>
-  <h1 id="title">PALM TREE<br/>PANIC BUTTON</h1>
+  <h1 id="title">PALM TREE<br>PANIC BUTTON</h1>
   <div id="main-menu" class="button-container">
-    <a href="https://www.milkandgin.co.uk/contacts" class="btn" target="_blank" rel="noopener">Key Contacts</a>
+    <!-- External links (open in new tab) -->
+    <a href="https://www.milkandgin.co.uk/contacts" class="btn" target="_blank">Key Contacts</a>
     <a href="#" class="btn" onclick="showSection('request'); return false;">Request Form</a>
     <a href="#" class="btn" onclick="showSection('map'); return false;">Workshop Map</a>
-    <a href="https://www.milkandgin.co.uk/amenities" class="btn" target="_blank" rel="noopener">Amenities</a>
+    <a href="https://www.milkandgin.co.uk/amenities" class="btn" target="_blank">Amenities</a>
   </div>
 
-  <!-- Request form section -->
+  <!-- Embedded request form -->
   <div id="request" class="section">
     <h2>Studio Unit Request Form</h2>
     <iframe src="https://studiounit.fillout.com/request-form" title="Studio Unit Request Form"></iframe>
     <button class="btn" onclick="showMainMenu()">Main Menu</button>
   </div>
 
-  <!-- Workshop map section -->
+  <!-- Embedded workshop map -->
   <div id="map" class="section">
     <h2>Workshop Map</h2>
     <embed src="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf#zoom=fitH" type="application/pdf">
-    <p><a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" target="_blank" rel="noopener">View full map in a new tab</a></p>
+    <p><a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" target="_blank">View full map in a new tab</a></p>
     <button class="btn" onclick="showMainMenu()">Main Menu</button>
   </div>
 
   <script>
-    // Show a section and hide the main menu and title
     function showSection(id) {
       document.getElementById('main-menu').style.display = 'none';
       document.getElementById('title').style.display = 'none';
@@ -134,7 +134,6 @@
         section.style.display = 'block';
       }
     }
-    // Return to main menu
     function showMainMenu() {
       document.getElementById('main-menu').style.display = 'flex';
       document.getElementById('title').style.display = 'block';
