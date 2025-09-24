@@ -6,10 +6,11 @@
   <meta name="theme-color" content="#f97316">
   <title>Palmtree Panic Button</title>
   <style>
-    /* Base resets */
+    /* Box model reset */
     *, *::before, *::after {
       box-sizing: border-box;
     }
+    /* Base resets */
     html, body {
       margin: 0;
       padding: 0;
@@ -24,7 +25,7 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      /* Add safe-area padding for iPhone notch and rounded corners */
+      /* Safe‑area padding for devices with a notch or rounded corners */
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
     }
@@ -38,7 +39,7 @@
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
-    /* Button container: 90% width allows room for centering */
+    /* Button container with responsive width */
     .button-container {
       width: 90%;
       max-width: 330px;
@@ -49,7 +50,7 @@
       flex-direction: column;
       gap: 1rem;
     }
-    /* Uniform button styles */
+    /* Shared button styles for anchors and buttons */
     .btn {
       display: block;
       width: 100%;
@@ -57,7 +58,6 @@
       background-color: #f97316;
       color: #fff;
       text-align: center;
-      text-decoration: none;
       font-size: 1rem;
       font-weight: 600;
       border-radius: 0.75rem;
@@ -65,11 +65,12 @@
       border: none;
       cursor: pointer;
       transition: background-color 0.2s ease-in-out;
+      text-decoration: none;
     }
     .btn:hover {
       background-color: #ea580c;
     }
-    /* Hidden sections until selected */
+    /* Hidden sections until activated */
     .section {
       display: none;
       width: 100%;
@@ -77,13 +78,14 @@
       padding: 0.5rem;
       text-align: center;
     }
-    /* Responsive heights for embedded content */
+    /* Embedded content sizing */
     .section iframe,
     .section embed {
       width: 100%;
       height: 70vh;
       border: none;
     }
+    /* Styling for the “view full map” link */
     .section a {
       color: #dc2626;
       text-decoration: underline;
@@ -92,7 +94,7 @@
     .section a:hover {
       color: #b91c1c;
     }
-    /* Smaller text on narrow screens */
+    /* Responsive adjustments for very narrow screens */
     @media (max-width: 480px) {
       h1 {
         font-size: 1.8rem;
@@ -110,29 +112,31 @@
   <!-- Main menu -->
   <h1 id="title">PALM TREE<br>PANIC BUTTON</h1>
   <div id="main-menu" class="button-container">
-    <a href="https://www.milkandgin.co.uk/contacts" class="btn" target="_blank">Key Contacts</a>
-    <a href="#" class="btn" onclick="showSection('request'); return false;">Request Form</a>
-    <a href="#" class="btn" onclick="showSection('map'); return false;">Workshop Map</a>
-    <a href="https://www.milkandgin.co.uk/amenities" class="btn" target="_blank">Amenities</a>
+    <!-- External links open in new tab; rel=noopener improves security -->
+    <a href="https://www.milkandgin.co.uk/contacts" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Open key contacts page in a new tab">Key Contacts</a>
+    <!-- Internal buttons call JavaScript to open sections -->
+    <a href="#" class="btn" onclick="showSection('request'); return false;" role="button" aria-label="Open request form">Request Form</a>
+    <a href="#" class="btn" onclick="showSection('map'); return false;" role="button" aria-label="Open workshop map">Workshop Map</a>
+    <a href="https://www.milkandgin.co.uk/amenities" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Open amenities page in a new tab">Amenities</a>
   </div>
 
   <!-- Request form section -->
   <div id="request" class="section">
     <h2>Studio Unit Request Form</h2>
     <iframe src="https://studiounit.fillout.com/request-form" title="Studio Unit Request Form"></iframe>
-    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+    <button class="btn" type="button" onclick="showMainMenu()" aria-label="Return to main menu">Main Menu</button>
   </div>
 
   <!-- Workshop map section -->
   <div id="map" class="section">
     <h2>Workshop Map</h2>
     <embed src="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf#zoom=fitH" type="application/pdf">
-    <p><a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" target="_blank">View full map in a new tab</a></p>
-    <button class="btn" onclick="showMainMenu()">Main Menu</button>
+    <p><a href="https://www.milkandgin.co.uk/_files/ugd/00d46a_9d52d09ae4bf47cf95428a9f16354a2d.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open full map in a new tab">View full map in a new tab</a></p>
+    <button class="btn" type="button" onclick="showMainMenu()" aria-label="Return to main menu">Main Menu</button>
   </div>
 
   <script>
-    // Show a section and hide the main menu
+    // Display the selected section and hide the main menu and other sections
     function showSection(id) {
       document.getElementById('main-menu').style.display = 'none';
       document.getElementById('title').style.display = 'none';
@@ -144,7 +148,7 @@
         section.style.display = 'block';
       }
     }
-    // Show the main menu and hide sections
+    // Return to main menu and hide all sections
     function showMainMenu() {
       document.getElementById('main-menu').style.display = 'flex';
       document.getElementById('title').style.display = 'block';
